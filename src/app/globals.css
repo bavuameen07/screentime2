@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #000000;
+  --color-secondary: #FFD700;
+  --color-background: #000000;
+  --color-foreground: #FFD700;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.premium-bg {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(255, 215, 0, 0.08), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 50% 110%, rgba(255, 215, 0, 0.05), transparent 60%),
+    #000000;
+}
+
+.gold-text {
+  background: linear-gradient(135deg, #fde68a 0%, #facc15 35%, #eab308 60%, #a16207 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gold-glow {
+  text-shadow: 0 0 30px rgba(250, 204, 21, 0.35), 0 0 60px rgba(250, 204, 21, 0.15);
+}
+
+.gold-border {
+  background: linear-gradient(180deg, rgba(250, 204, 21, 0.45), rgba(161, 98, 7, 0.15), rgba(250, 204, 21, 0.35));
+}
+
+.gold-panel {
+  background: linear-gradient(180deg, #fcd34d 0%, #facc15 45%, #eab308 75%, #ca8a04 100%);
+}
