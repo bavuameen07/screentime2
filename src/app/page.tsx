@@ -11,10 +11,10 @@ interface Batch {
 }
 
 const BATCHES: Batch[] = [
-  { id: 1, label: "Morning", startHour: 9, endHour: 12, color: "bg-yellow-400" },
-  { id: 2, label: "Afternoon", startHour: 12, endHour: 15, color: "bg-yellow-500" },
-  { id: 3, label: "Evening", startHour: 15, endHour: 18, color: "bg-yellow-600" },
-  { id: 4, label: "Night", startHour: 18, endHour: 21, color: "bg-yellow-300" },
+  { id: 1, label: "Morning", startHour: 9, endHour: 12, color: "bg-green-400" },
+  { id: 2, label: "Afternoon", startHour: 12, endHour: 15, color: "bg-green-500" },
+  { id: 3, label: "Evening", startHour: 15, endHour: 18, color: "bg-green-600" },
+  { id: 4, label: "Night", startHour: 18, endHour: 21, color: "bg-green-300" },
 ];
 
 const AUDIO_CONTEXT = typeof window !== "undefined" ? new (window.AudioContext || (window as any).webkitAudioContext)() : null;
@@ -174,19 +174,19 @@ export default function ScreenTimeTracker() {
     <div className="min-h-screen premium-bg p-4 sm:p-6 lg:p-8 flex flex-col">
       <div className="w-full flex-1 flex flex-col">
         <div className="gold-border rounded-3xl p-px flex-1 flex flex-col">
-          <div className="bg-gradient-to-b from-neutral-900 to-black rounded-[calc(1.5rem-1px)] shadow-2xl shadow-yellow-900/20 flex-1 flex flex-col overflow-hidden">
+          <div className="bg-gradient-to-b from-neutral-900 to-black rounded-[calc(1.5rem-1px)] shadow-2xl shadow-green-900/20 flex-1 flex flex-col overflow-hidden">
             <div className="flex items-center justify-between px-8 sm:px-12 pt-8 sm:pt-10 pb-6">
               <div className="flex items-baseline gap-4 text-left">
-                <span className="text-xl sm:text-2xl font-semibold text-yellow-100/90 tracking-wide">
+                <span className="text-xl sm:text-2xl font-semibold text-green-100/90 tracking-wide">
                   {mounted ? currentTime.toLocaleDateString(undefined, { weekday: "long", year: "numeric", month: "long", day: "numeric" }) : ""}
                 </span>
-                <span className="text-lg sm:text-xl text-yellow-400/80 font-mono tracking-widest">
+                <span className="text-lg sm:text-xl text-green-400/80 font-mono tracking-widest">
                   {mounted ? currentTime.toLocaleTimeString() : ""}
                 </span>
               </div>
               <button
                 onClick={toggleFullscreen}
-                className="px-5 py-2.5 rounded-full bg-gradient-to-b from-yellow-300 to-yellow-600 text-black text-sm font-bold tracking-wide shadow-lg shadow-yellow-500/20 hover:shadow-yellow-400/40 hover:from-yellow-200 hover:to-yellow-500 active:scale-95 transition-all"
+                className="px-5 py-2.5 rounded-full bg-gradient-to-b from-green-300 to-green-600 text-black text-sm font-bold tracking-wide shadow-lg shadow-green-500/20 hover:shadow-green-400/40 hover:from-green-200 hover:to-green-500 active:scale-95 transition-all"
               >
                 {isFullscreen ? "Normal Screen" : "Full Screen"}
               </button>
@@ -194,14 +194,14 @@ export default function ScreenTimeTracker() {
 
             <div className="text-center mb-8 px-8">
               <div className="flex items-center justify-center gap-3 mb-4">
-                <span className="h-px w-16 bg-gradient-to-r from-transparent to-yellow-500/50"></span>
-                <span className="text-yellow-500/70 text-lg leading-none">◆</span>
-                <span className="h-px w-16 bg-gradient-to-l from-transparent to-yellow-500/50"></span>
+                <span className="h-px w-16 bg-gradient-to-r from-transparent to-green-500/50"></span>
+                <span className="text-green-500/70 text-lg leading-none">◆</span>
+                <span className="h-px w-16 bg-gradient-to-l from-transparent to-green-500/50"></span>
               </div>
               <h1 className="text-4xl sm:text-5xl font-bold gold-text gold-glow tracking-[0.15em] uppercase">
                 Your Remaining Time
               </h1>
-              <p className="mt-3 text-yellow-400/50 text-sm tracking-[0.3em] uppercase">
+              <p className="mt-3 text-green-400/50 text-sm tracking-[0.3em] uppercase">
                 {mounted ? currentTime.toLocaleTimeString() : "--:--:--"}
               </p>
             </div>
@@ -210,7 +210,7 @@ export default function ScreenTimeTracker() {
               <div className={`rounded-2xl p-8 flex-1 flex flex-col justify-center relative overflow-hidden transition-all duration-500 ${isWaiting ? "bg-neutral-800/80" : "gold-panel"}`}>
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,0,0,0.15),transparent_50%)]"></div>
                 <div className="relative flex items-center justify-between mb-4">
-                  <span className={`text-xs font-semibold tracking-[0.25em] uppercase ${isWaiting ? "text-yellow-400/60" : "text-black/70"}`}>
+                  <span className={`text-xs font-semibold tracking-[0.25em] uppercase ${isWaiting ? "text-green-400/60" : "text-black/70"}`}>
                     {isWaiting ? "Waiting for" : "Current Batch"}
                   </span>
                   {!isWaiting && currentBatch && (
@@ -220,25 +220,25 @@ export default function ScreenTimeTracker() {
                   )}
                 </div>
                 
-                <h2 className={`relative text-4xl sm:text-5xl font-bold tracking-wide ${isWaiting ? "text-yellow-100/70" : "text-black"}`}>
+                <h2 className={`relative text-4xl sm:text-5xl font-bold tracking-wide ${isWaiting ? "text-green-100/70" : "text-black"}`}>
                   {isWaiting ? `Next: ${nextBatchLabel}` : currentBatch?.label}
                 </h2>
                 
                 {isWaiting && (
-                  <p className="relative mt-3 text-yellow-400/60">
+                  <p className="relative mt-3 text-green-400/60">
                     Starts at {isWaiting && currentTime.getHours() < 9 ? "9:00 AM" : "9:00 AM tomorrow"}
                   </p>
                 )}
               </div>
 
-              <div className="bg-neutral-900/90 rounded-2xl p-8 flex-1 flex flex-col justify-center text-center border border-yellow-900/20 shadow-inner shadow-black/40">
-                <div className="text-xs font-semibold text-yellow-400/70 uppercase tracking-[0.3em] mb-3">
+              <div className="bg-neutral-900/90 rounded-2xl p-8 flex-1 flex flex-col justify-center text-center border border-green-900/20 shadow-inner shadow-black/40">
+                <div className="text-xs font-semibold text-green-400/70 uppercase tracking-[0.3em] mb-3">
                   Time Remaining
                 </div>
                 <div className="font-mono text-6xl sm:text-7xl font-bold gold-text gold-glow tabular-nums tracking-tight">
                   {formatMs(remainingMs)}
                 </div>
-                <div className="mt-3 text-sm text-yellow-400/50 tracking-wide">
+                <div className="mt-3 text-sm text-green-400/50 tracking-wide">
                   {isWaiting 
                     ? `Until ${nextBatchLabel} batch starts`
                     : `Until Batch ${(currentBatch?.id || 0) % 4 + 1} starts`}
@@ -251,8 +251,8 @@ export default function ScreenTimeTracker() {
                     key={batch.id}
                     className={`py-4 px-2 rounded-xl text-center text-sm font-medium transition-all ${
                       currentBatch?.id === batch.id
-                        ? `gold-panel text-black shadow-xl shadow-yellow-500/20 scale-105 ring-2 ring-yellow-300/70`
-                        : "bg-neutral-800/60 text-yellow-400/60 border border-yellow-900/20 hover:border-yellow-500/40 hover:text-yellow-300 hover:bg-neutral-800"
+                        ? `gold-panel text-black shadow-xl shadow-green-500/20 scale-105 ring-2 ring-green-300/70`
+                        : "bg-neutral-800/60 text-green-400/60 border border-green-900/20 hover:border-green-500/40 hover:text-green-300 hover:bg-neutral-800"
                     }`}
                   >
                     <div className="font-bold tracking-widest">{batch.id}</div>
@@ -264,15 +264,15 @@ export default function ScreenTimeTracker() {
                 ))}
               </div>
 
-              <div className="pt-5 border-t border-yellow-900/20 mt-auto">
-                <div className="flex items-center justify-center gap-3 text-xs text-yellow-400/50 tracking-widest uppercase">
+              <div className="pt-5 border-t border-green-900/20 mt-auto">
+                <div className="flex items-center justify-center gap-3 text-xs text-green-400/50 tracking-widest uppercase">
                   <span className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
                     Live
                   </span>
-                  <span className="text-yellow-500/30">◆</span>
+                  <span className="text-green-500/30">◆</span>
                   <span>Updates every second</span>
-                  <span className="text-yellow-500/30">◆</span>
+                  <span className="text-green-500/30">◆</span>
                   <span>Beep at transitions</span>
                 </div>
               </div>
